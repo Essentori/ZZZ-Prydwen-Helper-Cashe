@@ -89,6 +89,14 @@ function extractJsonArray(html, keyName) {
     try { return JSON.parse(cleanStr); } catch (e) { return null; }
 }
 
+function extractFromPayload(stream, html, keyName) {
+    if (stream) {
+        const res = extractJsonArray(stream, keyName);
+        if (res) return res;
+    }
+    return extractJsonArray(html, keyName);
+}
+
 function normalizeExtractedArray(arr) {
     if (!Array.isArray(arr)) return [];
     return arr.map(item => {
@@ -101,8 +109,9 @@ function normalizeExtractedArray(arr) {
     });
 }
 
-function extractUpdateDate(html) {
-    const match = html.match(/(?:\\"last_updated\\"|\\"updated_at\\"|["']last_updated["']|["']updated_at["'])\s*:\s*\\?"([^\\"]+)\\?"/);
+function extractUpdateDate(html, stream) {
+    const match = html.match(/(?:\\"last_updated\\"|\\"updated_at\\"|["']last_updated["']|["']updated_at["'])\s*:\s*\\?"([^\\"]+)\\?"/) ||
+                  (stream && stream.match(/(?:\\"last_updated\\"|\\"updated_at\\"|["']last_updated["']|["']updated_at["'])\s*:\s*\\?"([^\\"]+)\\?"/));
     if (match) {
         const val = match[1];
         if (val.split('/').length === 3 && isNaN(Number(val.split('/')[1]))) return val;
@@ -123,20 +132,30 @@ async function runScraper() {
     if (fs.existsSync(outputPath)) {
         try {
             const oldData = JSON.parse(fs.readFileSync(outputPath, 'utf-8'));
-            const oldVersion = oldData.version || "1.0";
+            let oldVersion = "1.0"; 
+
+            if (!oldData) {
+                oldVersion = "0.0";
+            } else if (Array.isArray(oldData)) {
+                oldVersion = "1.0";
+                oldData.forEach(c => { if (c && c.Id) oldRosterMap.set(c.Id, c); });
+            } else if (typeof oldData === 'object') {
+                oldVersion = oldData.version || "1.0";
+                if (oldData.characters && Array.isArray(oldData.characters)) {
+                    oldData.characters.forEach(c => { if (c && c.Id) oldRosterMap.set(c.Id, c); });
+                }
+            }
+
             if (oldVersion !== SCRAPER_VERSION) {
-                console.log(`[Force Reset] Version mismatch! Old: ${oldVersion} | New: ${SCRAPER_VERSION}. Re-initializing database.`);
+                console.log(`[Force Reset] Version mismatch! Old DB Format: v${oldVersion} | New Scraper: v${SCRAPER_VERSION}. Forcing full rebuild.`);
                 forceFullUpdate = true;
             }
-            if (oldData.characters && Array.isArray(oldData.characters)) {
-                oldData.characters.forEach(c => { if (c.Id) oldRosterMap.set(c.Id, c); });
-            }
         } catch (e) {
-            console.log("[Warning] Failed to parse old database. Forcing full initialization.");
+            console.log("[Warning] Failed to parse old database or file is corrupt. Forcing full initialization.");
             forceFullUpdate = true;
         }
     } else {
-        console.log("[Initial Run] Database not found. Forcing full initialization.");
+        console.log("[Initial Run] Database file not found. Forcing full initialization.");
         forceFullUpdate = true;
     }
 
@@ -155,12 +174,23 @@ async function runScraper() {
         await new Promise(resolve => setTimeout(resolve, 15000));
 
         const htmlContent = await page.content();
-        if (htmlContent.includes("Just a moment...") || htmlContent.includes("challenge-running")) {
-            throw new Error("Cloudflare bypass failed.");
+        
+        const streamContent = await page.evaluate(() => {
+            if (!window.__next_f || !Array.isArray(window.__next_f)) return '';
+            return window.__next_f.map(chunk => Array.isArray(chunk) ? chunk[1] : '').filter(Boolean).join('');
+        });
+
+        if (htmlContent.includes("Just a moment...") || htmlContent.includes("challenge-running") || htmlContent.includes("Access denied")) {
+            throw new Error("Cloudflare bypass failed. Runner IP might be blocked.");
         }
 
-        const rosterCharacters = extractJsonArray(htmlContent, "characters");
-        if (!rosterCharacters) throw new Error("Could not find characters array identifier.");
+        const rosterCharacters = extractFromPayload(streamContent, htmlContent, "characters");
+        if (!rosterCharacters) {
+            const pageTitle = await page.title();
+            console.log(`[Debug Failure] Page Title: ${pageTitle}`);
+            console.log(`[Debug Failure] HTML Snippet: ${htmlContent.substring(0, 600).replace(/\s+/g, ' ')}`);
+            throw new Error("Could not find characters array identifier. Verify page structure or Cloudflare challenge status.");
+        }
         
         console.log(`Parsed ${rosterCharacters.length} characters from roster.`);
 
@@ -206,7 +236,12 @@ async function runScraper() {
                 await new Promise(resolve => setTimeout(resolve, 5000));
 
                 const detailHtml = await page.content();
-                const remoteLastUpdated = extractUpdateDate(detailHtml);
+                const detailStream = await page.evaluate(() => {
+                    if (!window.__next_f || !Array.isArray(window.__next_f)) return '';
+                    return window.__next_f.map(chunk => Array.isArray(chunk) ? chunk[1] : '').filter(Boolean).join('');
+                });
+
+                const remoteLastUpdated = extractUpdateDate(detailHtml, detailStream);
 
                 if (!forceFullUpdate && localLastUpdated && remoteLastUpdated === localLastUpdated) {
                     console.log(`[Status] ${char.Name} up-to-date (${remoteLastUpdated}). Skipping deep extraction.`);
@@ -216,7 +251,10 @@ async function runScraper() {
 
                 console.log(`[Update] Local: ${localLastUpdated} | Remote: ${remoteLastUpdated}. Extracting deep data...`);
 
-                const rawEngines = normalizeExtractedArray(extractJsonArray(detailHtml, "wEngines") || extractJsonArray(detailHtml, "engines") || []);
+                const rawEngines = normalizeExtractedArray(
+                    extractFromPayload(detailStream, detailHtml, "wEngines") || 
+                    extractFromPayload(detailStream, detailHtml, "engines") || []
+                );
                 const bestWEngines = rawEngines.map(e => {
                     if (!e) return null;
                     const name = e.name || (e.wEngine && e.wEngine.name) || (e.engine && e.engine.name) || e.title || e.id || "Unknown Engine";
@@ -224,7 +262,10 @@ async function runScraper() {
                     return { Name: name, Rating: String(rating) };
                 }).filter(Boolean);
 
-                const rawSets = normalizeExtractedArray(extractJsonArray(detailHtml, "driveSets") || extractJsonArray(detailHtml, "diskSets") || []);
+                const rawSets = normalizeExtractedArray(
+                    extractFromPayload(detailStream, detailHtml, "driveSets") || 
+                    extractFromPayload(detailStream, detailHtml, "diskSets") || []
+                );
                 const bestDiskSets = rawSets.map(s => {
                     if (!s) return null;
                     const name = s.name || (s.set && s.set.name) || (s.driveSet && s.driveSet.name) || s.title || "Unknown Set";
@@ -232,7 +273,10 @@ async function runScraper() {
                     return { Name: name, Rating: String(rating) };
                 }).filter(Boolean);
 
-                const rawStats = normalizeExtractedArray(extractJsonArray(detailHtml, "statsPriority") || extractJsonArray(detailHtml, "mainStats") || []);
+                const rawStats = normalizeExtractedArray(
+                    extractFromPayload(detailStream, detailHtml, "statsPriority") || 
+                    extractFromPayload(detailStream, detailHtml, "mainStats") || []
+                );
                 const mainStats = rawStats
                     .filter(s => s && (s.slot === "4" || s.slot === "5" || s.slot === "6" || s.slot === 4 || s.slot === 5 || s.slot === 6))
                     .map(s => {
@@ -245,7 +289,10 @@ async function runScraper() {
                         return { Slot: String(s.slot), Stats: statsArr };
                     });
 
-                const rawCalc = normalizeExtractedArray(extractJsonArray(detailHtml, "calculations") || extractJsonArray(detailHtml, "mindscapes") || []);
+                const rawCalc = normalizeExtractedArray(
+                    extractFromPayload(detailStream, detailHtml, "calculations") || 
+                    extractFromPayload(detailStream, detailHtml, "mindscapes") || []
+                );
                 const calculation = rawCalc.map(c => {
                     if (!c) return null;
                     if (typeof c === 'object') {
@@ -265,9 +312,7 @@ async function runScraper() {
                 fs.writeFileSync(charFilePath, JSON.stringify(finalizedCharacterData, null, 2), 'utf-8');
                 console.log(`[Success] Saved localized cache for ${char.Name}`);
                 char.LastUpdated = remoteLastUpdated;
-                console.log("For testing purposes only one character initialized. breaking from cycle.");
-                break;
-                
+
             } catch (charError) {
                 console.error(`[Error] Failed processing ${char.Name}:`, charError.message);
             }
