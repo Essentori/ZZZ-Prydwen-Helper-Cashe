@@ -1,0 +1,88 @@
+{
+  "Meta": {
+    "Id": "cmoxppmv6008foack5aedp10j",
+    "Name": "Orphie & Magus",
+    "LastUpdated": "2026-06-25T12:36:07.429Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Bellicose Blaze",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Cannon Rotor",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Cordis Germina",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Drill Rig - Red Axis",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Gilded Blossom",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Heartstring Nocturne",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Marcato Desire",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Myriad Eclipse",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Riot Suppressor Mark VI",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Severed Innocence",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Steel Cushion",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Brimstone",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Astral Voice",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Branch & Blade Song",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Moonlight Lullaby",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Shadow Harmony",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Swing Jazz",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Woodpecker Electro",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

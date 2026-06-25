@@ -1,0 +1,88 @@
+{
+  "Meta": {
+    "Id": "cmoxppmzr009zoack164an8ct",
+    "Name": "Pyrois",
+    "LastUpdated": "2026-06-25T12:36:35.423Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Cannon Rotor",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Cordis Germina",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Heartstring Nocturne",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Marcato Desire",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Riot Suppressor Mark VI",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Severed Innocence",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Sol Exuvia",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Starlight Engine",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Steel Cushion",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Brimstone",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Astral Voice",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Branch & Blade Song",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Chaotic Metal",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Hormone Punk",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Puffer Electro",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Shining Aria",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Sky Ablaze",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Woodpecker Electro",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

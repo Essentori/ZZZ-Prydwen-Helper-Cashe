@@ -1,0 +1,88 @@
+{
+  "Meta": {
+    "Id": "cmoxppmwe008voackbusl0e3r",
+    "Name": "Soldier 11",
+    "LastUpdated": "2026-06-25T12:37:08.690Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Cordis Germina",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Heartstring Nocturne",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Marcato Desire",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Myriad Eclipse",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Riot Suppressor Mark VI",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Severed Innocence",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Starlight Engine",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Steel Cushion",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Street Superstar",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Brimstone",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Zanshin Herb Case",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Astral Voice",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Branch & Blade Song",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Dawn's Bloom",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Hormone Punk",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Inferno Metal",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Puffer Electro",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Woodpecker Electro",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

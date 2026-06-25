@@ -1,0 +1,76 @@
+{
+  "Meta": {
+    "Id": "cmoxppmrc0077oackf82be8sp",
+    "Name": "Ben",
+    "LastUpdated": "2026-06-25T12:33:40.281Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Bunny Band",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Cloudcleave Radiance",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Hailstorm Shrine",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Heartstring Nocturne",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Original Transmorpher",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Severed Innocence",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Tremor Trigram Vessel",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Astral Voice",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Branch & Blade Song",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Bunny in Wonderland",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Hormone Punk",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Inferno Metal",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Moonlight Lullaby",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Puffer Electro",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Woodpecker Electro",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

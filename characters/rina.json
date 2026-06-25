@@ -1,0 +1,64 @@
+{
+  "Meta": {
+    "Id": "cmoxppmvy008poack6gjh642o",
+    "Name": "Rina",
+    "LastUpdated": "2026-06-25T12:36:46.057Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Kaboom the Cannon",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Slice of Time",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Unfettered Game Ball",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Weeping Cradle",
+        "Rating": "100%"
+      },
+      {
+        "Name": "[Reverb] Mark II",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Astral Voice",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Freedom Blues",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Hormone Punk",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Moonlight Lullaby",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Puffer Electro",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Swing Jazz",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Thunder Metal",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

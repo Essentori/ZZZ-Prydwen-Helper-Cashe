@@ -1,0 +1,80 @@
+{
+  "Meta": {
+    "Id": "cmoxppn0r00adoack3mbkgkj6",
+    "Name": "Velina",
+    "LastUpdated": "2026-06-25T12:37:30.660Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Drill Rig - Red Axis",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Electro-Lip Gloss",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Flamemaker Shaker",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Fusion Compiler",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Joyau Dore",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Kaboom the Cannon",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Rainforest Gourmet",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Serpentine Seeker",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Steam Oven",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Vault",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Weeping Gemini",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Freedom Blues",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Moonlight Lullaby",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Phaethon's Melody",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Swing Jazz",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Wuthering Salon",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

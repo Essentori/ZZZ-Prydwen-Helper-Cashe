@@ -1,0 +1,88 @@
+{
+  "Meta": {
+    "Id": "cmoxppmwq008zoack7c0yyygi",
+    "Name": "Trigger",
+    "LastUpdated": "2026-06-25T12:37:25.309Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Blazing Laurel",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Box Cutter",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Demara Battery Mark II",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Hellfire Gears",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Ice-Jade Teapot",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Precious Fossilized Core",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Spectral Gaze",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Steam Oven",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Steel Cushion",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Restrained",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Simmering Pot",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Astral Voice",
+        "Rating": "100%"
+      },
+      {
+        "Name": "King of the Summit",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Proto Punk",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Shadow Harmony",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Shockstar Disco",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Swing Jazz",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Woodpecker Electro",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

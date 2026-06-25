@@ -1,0 +1,76 @@
+{
+  "Meta": {
+    "Id": "cmoxppmu10081oacksihz2ee3",
+    "Name": "Lucia",
+    "LastUpdated": "2026-06-25T12:35:17.048Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Bashful Demon",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Cauldron of Clarity",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Dreamlit Hearth",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Kaboom the Cannon",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Original Transmorpher",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Slice of Time",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Vault",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Unfettered Game Ball",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Weeping Cradle",
+        "Rating": "100%"
+      },
+      {
+        "Name": "[Reverb] Mark III",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Bunny in Wonderland",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Moonlight Lullaby",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Swing Jazz",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Woodpecker Electro",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Yunkui Tales",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

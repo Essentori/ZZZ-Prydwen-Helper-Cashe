@@ -1,0 +1,88 @@
+{
+  "Meta": {
+    "Id": "cmoxppmqt0071oack0kfioqw0",
+    "Name": "Anton",
+    "LastUpdated": "2026-06-25T12:33:17.385Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Cannon Rotor",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Cordis Germina",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Drill Rig - Red Axis",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Gilded Blossom",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Heartstring Nocturne",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Marcato Desire",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Severed Innocence",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Starlight Engine",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Street Superstar",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Brimstone",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Zanshin Herb Case",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Astral Voice",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Branch & Blade Song",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Dawn's Bloom",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Hormone Punk",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Puffer Electro",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Thunder Metal",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Woodpecker Electro",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

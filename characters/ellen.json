@@ -1,0 +1,84 @@
+{
+  "Meta": {
+    "Id": "cmoxppmsj007joackp1jhrrj1",
+    "Name": "Ellen",
+    "LastUpdated": "2026-06-25T12:34:25.847Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Cannon Rotor",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Cordis Germina",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Deep Sea Visitor",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Drill Rig - Red Axis",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Heartstring Nocturne",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Marcato Desire",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Myriad Eclipse",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Starlight Engine",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Steel Cushion",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Brimstone",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Astral Voice",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Branch & Blade Song",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Hormone Punk",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Polar Metal",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Puffer Electro",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Shadow Harmony",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Woodpecker Electro",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

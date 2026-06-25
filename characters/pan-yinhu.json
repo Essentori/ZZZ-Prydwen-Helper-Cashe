@@ -1,0 +1,84 @@
+{
+  "Meta": {
+    "Id": "cmoxppmvb008hoackb246r7li",
+    "Name": "Pan Yinhu",
+    "LastUpdated": "2026-06-25T12:36:12.744Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Drill Rig - Red Axis",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Half-Sugar Bunny",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Kaboom the Cannon",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Original Transmorpher",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Peacekeeper - Specialized",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Reel Projector",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Spring Embrace",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Vault",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Tremor Trigram Vessel",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Tusks of Fury",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Astral Voice",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Bunny in Wonderland",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Fanged Metal",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Hormone Punk",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Moonlight Lullaby",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Proto Punk",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Swing Jazz",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

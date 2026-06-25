@@ -1,0 +1,84 @@
+{
+  "Meta": {
+    "Id": "cmoxppmtp007xoackza6thlv0",
+    "Name": "Koleda",
+    "LastUpdated": "2026-06-25T12:35:05.735Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Blazing Laurel",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Hailstorm Shrine",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Hellfire Gears",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Precious Fossilized Core",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Reel Projector",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Roaring Fur-nace",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Six Shooter",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Steam Oven",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Restrained",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Simmering Pot",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Astral Voice",
+        "Rating": "100%"
+      },
+      {
+        "Name": "King of the Summit",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Moonlight Lullaby",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Proto Punk",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Shockstar Disco",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Swing Jazz",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Woodpecker Electro",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

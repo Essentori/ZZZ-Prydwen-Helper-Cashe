@@ -1,0 +1,84 @@
+{
+  "Meta": {
+    "Id": "cmoxppmxp009boackyor9lzkt",
+    "Name": "Yuzuha",
+    "LastUpdated": "2026-06-25T12:38:04.277Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Bashful Demon",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Elegant Vanity",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Kaboom the Cannon",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Metanukimorphosis",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Slice of Time",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Vault",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Thoughtbop",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Unfettered Game Ball",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Weeping Cradle",
+        "Rating": "100%"
+      },
+      {
+        "Name": "[Reverb] Mark III",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Astral Voice",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Chaos Jazz",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Freedom Blues",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Hormone Punk",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Moonlight Lullaby",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Phaethon's Melody",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Swing Jazz",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

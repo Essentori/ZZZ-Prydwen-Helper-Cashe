@@ -1,0 +1,88 @@
+{
+  "Meta": {
+    "Id": "cmoxppmtj007voacklwqbj7jd",
+    "Name": "Ju Fufu",
+    "LastUpdated": "2026-06-25T12:35:00.384Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Blazing Laurel",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Box Cutter",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Hellfire Gears",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Ice-Jade Teapot",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Precious Fossilized Core",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Roaring Fur-nace",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Steam Oven",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Brimstone",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Restrained",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Simmering Pot",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Astral Voice",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Hormone Punk",
+        "Rating": "100%"
+      },
+      {
+        "Name": "King of the Summit",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Moonlight Lullaby",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Proto Punk",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Shockstar Disco",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Swing Jazz",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Woodpecker Electro",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

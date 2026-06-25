@@ -1,0 +1,76 @@
+{
+  "Meta": {
+    "Id": "cmoxppmxy009doack7gustwf4",
+    "Name": "Zhao",
+    "LastUpdated": "2026-06-25T12:38:10.083Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Bunny Band",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Cauldron of Clarity",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Grill O'Wisp",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Half-Sugar Bunny",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Kaboom the Cannon",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Original Transmorpher",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Reel Projector",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Spring Embrace",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Tremor Trigram Vessel",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Tusks of Fury",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Astral Voice",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Bunny in Wonderland",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Moonlight Lullaby",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Swing Jazz",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Yunkui Tales",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

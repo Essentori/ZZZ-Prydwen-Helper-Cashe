@@ -1,0 +1,76 @@
+{
+  "Meta": {
+    "Id": "cmoxppmye009hoackxxcroi58",
+    "Name": "Aria",
+    "LastUpdated": "2026-06-25T12:33:22.831Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Angel in the Shell",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Electro-Lip Gloss",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Flamemaker Shaker",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Flight of Fancy",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Fusion Compiler",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Practiced Perfection",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Rainforest Gourmet",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Roaring Ride",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Timeweaver",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Weeping Gemini",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Chaos Jazz",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Chaotic Metal",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Freedom Blues",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Phaethon's Melody",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Shining Aria",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

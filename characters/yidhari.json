@@ -1,0 +1,76 @@
+{
+  "Meta": {
+    "Id": "cmoxppmxd0097oackidpnc6or",
+    "Name": "Yidhari",
+    "LastUpdated": "2026-06-25T12:37:53.555Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Cauldron of Clarity",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Grill O'Wisp",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Hailstorm Shrine",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Kraken's Cradle",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Puzzle Sphere",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Qingming Birdcage",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Radiowave Journey",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Steel Cushion",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Wrathful Vajra",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Branch & Blade Song",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Bunny in Wonderland",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Notes From the Chained",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Polar Metal",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Woodpecker Electro",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Yunkui Tales",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}

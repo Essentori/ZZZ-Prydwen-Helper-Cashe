@@ -1,0 +1,76 @@
+{
+  "Meta": {
+    "Id": "cmoxppmyw009noack3dfd0ujn",
+    "Name": "Sunna",
+    "LastUpdated": "2026-06-25T12:37:19.957Z"
+  },
+  "Build": {
+    "BestWEngines": [
+      {
+        "Name": "Bashful Demon",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Dreamlit Hearth",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Elegant Vanity",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Kaboom the Cannon",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Metanukimorphosis",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Slice of Time",
+        "Rating": "100%"
+      },
+      {
+        "Name": "The Vault",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Thoughtbop",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Unfettered Game Ball",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Weeping Cradle",
+        "Rating": "100%"
+      }
+    ],
+    "BestDiskSets": [
+      {
+        "Name": "Astral Voice",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Hormone Punk",
+        "Rating": "100%"
+      },
+      {
+        "Name": "King of the Summit",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Moonlight Lullaby",
+        "Rating": "100%"
+      },
+      {
+        "Name": "Swing Jazz",
+        "Rating": "100%"
+      }
+    ],
+    "MainStats": [],
+    "SubStats": []
+  },
+  "Calculation": []
+}
