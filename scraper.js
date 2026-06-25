@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Script version for database migration control
-const SCRAPER_VERSION = "1.1"; 
+const SCRAPER_VERSION = "1.2"; 
 
 puppeteer.use(StealthPlugin());
 
