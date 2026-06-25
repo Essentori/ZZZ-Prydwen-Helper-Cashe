@@ -3,7 +3,7 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const fs = require('fs');
 const path = require('path');
 
-// Script version for migration control
+// Script version for database migration control
 const SCRAPER_VERSION = "1.1"; 
 
 puppeteer.use(StealthPlugin());
@@ -138,7 +138,7 @@ async function runScraper() {
                 forceFullUpdate = true;
             }
         } catch (e) {
-            console.log("[Warning] Failed to parse old database or file is corrupt. Forcing full initialization.");
+            console.log("[Warning] Failed to parse old database. Forcing full initialization.");
             forceFullUpdate = true;
         }
     } else {
@@ -163,7 +163,6 @@ async function runScraper() {
         await new Promise(resolve => setTimeout(resolve, 15000));
 
         const htmlContent = await page.content();
-        
         const streamContent = await page.evaluate(() => {
             if (!window.__next_f || !Array.isArray(window.__next_f)) return '';
             return window.__next_f.map(chunk => Array.isArray(chunk) ? chunk[1] : '').filter(Boolean).join('');
@@ -175,10 +174,7 @@ async function runScraper() {
 
         const rosterCharacters = extractFromPayload(streamContent, htmlContent, "characters");
         if (!rosterCharacters) {
-            const pageTitle = await page.title();
-            console.log(`[Debug Failure] Page Title: ${pageTitle}`);
-            console.log(`[Debug Failure] HTML Snippet: ${htmlContent.substring(0, 600).replace(/\s+/g, ' ')}`);
-            throw new Error("Could not find characters array identifier. Verify page structure or Cloudflare challenge status.");
+            throw new Error("Could not find characters array identifier.");
         }
         
         console.log(`Parsed ${rosterCharacters.length} characters from roster.`);
@@ -193,7 +189,7 @@ async function runScraper() {
                 Element: char.element || "",
                 Style: char.style || "",
                 Faction: char.faction || "",
-                SmallImage: char.smallImage || "",
+                SmallImage: char.smallImage ? `https://www.prydwen.gg${char.smallImage}` : "",
                 LastUpdated: oldChar ? (oldChar.LastUpdated || "") : ""
             };
         });
@@ -242,56 +238,50 @@ async function runScraper() {
 
                 console.log(`[Update] Extracting deep payload data for ${char.Name}...`);
 
-                const rawEngines = normalizeExtractedArray(
-                    extractFromPayload(detailStream, detailHtml, "wEngines") || 
-                    extractFromPayload(detailStream, detailHtml, "engines") || []
-                );
+                // W-Engines
+                const rawEngines = normalizeExtractedArray(extractFromPayload(detailStream, detailHtml, "wEngines") || []);
                 const bestWEngines = rawEngines.map(e => {
                     if (!e) return null;
-                    const name = e.name || (e.wEngine && e.wEngine.name) || (e.engine && e.engine.name) || e.title || e.id || "Unknown Engine";
-                    const rating = e.rating || e.percentage || e.value || (e.stats && e.stats.percentage) || "100%";
-                    return { Name: name, Rating: String(rating) };
+                    const nested = e.wEngine || e.engine || e;
+                    const name = nested.name || e.title || "Unknown Engine";
+                    let rating = e.value || e.rating || "100";
+                    rating = String(rating).replace('%', '').trim() + "%";
+                    return { Name: name, Rating: rating };
                 }).filter(Boolean);
 
-                const rawSets = normalizeExtractedArray(
-                    extractFromPayload(detailStream, detailHtml, "driveSets") || 
-                    extractFromPayload(detailStream, detailHtml, "diskSets") || []
-                );
+                // Drive Sets
+                const rawSets = normalizeExtractedArray(extractFromPayload(detailStream, detailHtml, "driveSets") || extractFromPayload(detailStream, detailHtml, "diskSets") || []);
                 const bestDiskSets = rawSets.map(s => {
                     if (!s) return null;
-                    const name = s.name || (s.set && s.set.name) || (s.driveSet && s.driveSet.name) || s.title || "Unknown Set";
-                    const rating = s.rating || s.percentage || s.value || "100%";
-                    return { Name: name, Rating: String(rating) };
+                    const name = s.name || (s.items && s.items.map(i => i.name).join(' + ')) || "Unknown Set";
+                    let rating = s.value || s.rating || "100";
+                    rating = String(rating).replace('%', '').trim() + "%";
+                    return { Name: name, Rating: rating };
                 }).filter(Boolean);
 
-                const rawStats = normalizeExtractedArray(
-                    extractFromPayload(detailStream, detailHtml, "statsPriority") || 
-                    extractFromPayload(detailStream, detailHtml, "mainStats") || []
-                );
+                // Stats Priority
+                const rawStats = normalizeExtractedArray(extractFromPayload(detailStream, detailHtml, "statsPriority") || []);
                 const mainStats = rawStats
-                    .filter(s => s && (s.slot === "4" || s.slot === "5" || s.slot === "6" || s.slot === 4 || s.slot === 5 || s.slot === 6))
+                    .filter(s => s && (s.slot === 4 || s.slot === 5 || s.slot === 6 || s.slot === "4" || s.slot === "5" || s.slot === "6"))
                     .map(s => {
                         let statsArr = [];
-                        if (Array.isArray(s.stats)) {
-                            statsArr = s.stats.map(st => typeof st === 'object' ? (st.name || st.title || String(st)) : String(st));
-                        } else if (s.stats) {
-                            statsArr = [typeof s.stats === 'object' ? (s.stats.name || s.stats.title || String(s.stats)) : String(s.stats)];
+                        if (Array.isArray(s.options)) {
+                            statsArr = s.options.map(opt => opt && opt.stat ? String(opt.stat) : null).filter(Boolean);
+                        } else if (Array.isArray(s.stats)) {
+                            statsArr = s.stats.map(st => typeof st === 'object' ? (st.name || String(st)) : String(st));
                         }
                         return { Slot: String(s.slot), Stats: statsArr };
                     });
-
-                const rawCalc = normalizeExtractedArray(
-                    extractFromPayload(detailStream, detailHtml, "calculations") || 
-                    extractFromPayload(detailStream, detailHtml, "mindscapes") || []
-                );
+                // Recomended Stats
+                // --------
+                // Mindscapes
+                const rawCalc = normalizeExtractedArray(extractFromPayload(detailStream, detailHtml, "mindscapes") || []);
                 const calculation = rawCalc.map(c => {
                     if (!c) return null;
-                    if (typeof c === 'object') {
-                        const name = c.name || c.label || c.title || c.id || "M?";
-                        const value = c.value || c.percentage || c.rating || "100%";
-                        return { Label: String(name), Value: String(value) };
-                    }
-                    return { Label: "M?", Value: String(c) };
+                    const name = c.name || c.label || "M?";
+                    let value = c.value || "100";
+                    value = String(value).replace('%', '').trim() + "%";
+                    return { Label: String(name), Value: value };
                 }).filter(Boolean);
 
                 const finalizedCharacterData = {
@@ -303,8 +293,8 @@ async function runScraper() {
                 fs.writeFileSync(charFilePath, JSON.stringify(finalizedCharacterData, null, 2), 'utf-8');
                 console.log(`[Success] Saved localized cache for ${char.Name}`);
                 char.LastUpdated = remoteLastUpdated;
-                console.log(`Force cycle break`);
                 break;
+                
             } catch (charError) {
                 console.error(`[Error] Failed processing ${char.Name}:`, charError.message);
             }
@@ -320,7 +310,7 @@ async function runScraper() {
     } catch (error) {
         console.error("Scraper execution failed:", error.message);
         process.exit(1);
-    } finally {
+    } final {
         await browser.close();
     }
 }
