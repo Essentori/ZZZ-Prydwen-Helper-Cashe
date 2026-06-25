@@ -232,7 +232,6 @@ async function runScraper() {
 
                 const remoteLastUpdated = extractUpdateDate(detailHtml, detailStream);
 
-                // Кристально прозрачное управление приоритетом миграций над проверкой дат:
                 if (forceFullUpdate) {
                     console.log(`[Migration Override] Version migration active! Forcing full rebuild for ${char.Name}.`);
                 } else if (localLastUpdated && remoteLastUpdated === localLastUpdated) {
