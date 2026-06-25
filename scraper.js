@@ -3,7 +3,7 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const fs = require('fs');
 const path = require('path');
 
-// Version for migration control
+// Script version for migration control
 const SCRAPER_VERSION = "1.1"; 
 
 puppeteer.use(StealthPlugin());
@@ -42,7 +42,7 @@ function formatToPrydwenDate(dateInput) {
 }
 
 function extractJsonArray(html, keyName) {
-    const regex = new RegExp(`\\\\*"${keyName}\\\\*"\\s*:\\s*\\\\*\\[|["']${keyName}["']\\s*:\\s*\\[`);
+    const regex = new RegExp(`\\\\"${keyName}\\\\"\\s*:\\s*\\[|["']${keyName}["']\\s*:\\s*\\[`);
     const match = html.match(regex);
     if (!match) return null;
     
@@ -51,27 +51,14 @@ function extractJsonArray(html, keyName) {
     
     let bracketCount = 0;
     let endIdx = -1;
-    let inString = false;
-    let escape = false;
     
     for (let i = startIdx; i < html.length; i++) {
-        const char = html[i];
-        if (char === '"' && !escape) {
-            inString = !inString;
-        }
-        if (char === '\\' && inString) {
-            escape = !escape;
-        } else {
-            escape = false;
-        }
-        if (!inString) {
-            if (char === '[') bracketCount++;
-            else if (char === ']') {
-                bracketCount--;
-                if (bracketCount === 0) {
-                    endIdx = i;
-                    break;
-                }
+        if (html[i] === '[') bracketCount++;
+        else if (html[i] === ']') {
+            bracketCount--;
+            if (bracketCount === 0) {
+                endIdx = i;
+                break;
             }
         }
     }
@@ -89,6 +76,14 @@ function extractJsonArray(html, keyName) {
     try { return JSON.parse(rawStr); } catch (e) { return null; }
 }
 
+function extractFromPayload(stream, html, keyName) {
+    if (stream) {
+        const res = extractJsonArray(stream, keyName);
+        if (res) return res;
+    }
+    return extractJsonArray(html, keyName);
+}
+
 function normalizeExtractedArray(arr) {
     if (!Array.isArray(arr)) return [];
     return arr.map(item => {
@@ -101,8 +96,9 @@ function normalizeExtractedArray(arr) {
     });
 }
 
-function extractUpdateDate(html) {
-    const match = html.match(/(?:\\"last_updated\\"|\\"updated_at\\"|["']last_updated["']|["']updated_at["'])\s*:\s*\\?"([^\\"]+)\\?"/);
+function extractUpdateDate(html, stream) {
+    const match = html.match(/(?:\\"last_updated\\"|\\"updated_at\\"|["']last_updated["']|["']updated_at["'])\s*:\s*\\?"([^\\"]+)\\?"/) ||
+                  (stream && stream.match(/(?:\\"last_updated\\"|\\"updated_at\\"|["']last_updated["']|["']updated_at["'])\s*:\s*\\?"([^\\"]+)\\?"/));
     if (match) {
         const val = match[1];
         if (val.split('/').length === 3 && isNaN(Number(val.split('/')[1]))) return val;
@@ -167,12 +163,17 @@ async function runScraper() {
         await new Promise(resolve => setTimeout(resolve, 15000));
 
         const htmlContent = await page.content();
+        
+        const streamContent = await page.evaluate(() => {
+            if (!window.__next_f || !Array.isArray(window.__next_f)) return '';
+            return window.__next_f.map(chunk => Array.isArray(chunk) ? chunk[1] : '').filter(Boolean).join('');
+        });
 
         if (htmlContent.includes("Just a moment...") || htmlContent.includes("challenge-running") || htmlContent.includes("Access denied")) {
             throw new Error("Cloudflare bypass failed. Runner IP might be blocked.");
         }
 
-        const rosterCharacters = extractJsonArray(htmlContent, "characters");
+        const rosterCharacters = extractFromPayload(streamContent, htmlContent, "characters");
         if (!rosterCharacters) {
             const pageTitle = await page.title();
             console.log(`[Debug Failure] Page Title: ${pageTitle}`);
@@ -224,17 +225,28 @@ async function runScraper() {
                 await new Promise(resolve => setTimeout(resolve, 5000));
 
                 const detailHtml = await page.content();
-                const remoteLastUpdated = extractUpdateDate(detailHtml);
+                const detailStream = await page.evaluate(() => {
+                    if (!window.__next_f || !Array.isArray(window.__next_f)) return '';
+                    return window.__next_f.map(chunk => Array.isArray(chunk) ? chunk[1] : '').filter(Boolean).join('');
+                });
 
-                if (!forceFullUpdate && localLastUpdated && remoteLastUpdated === localLastUpdated) {
+                const remoteLastUpdated = extractUpdateDate(detailHtml, detailStream);
+
+                // Кристально прозрачное управление приоритетом миграций над проверкой дат:
+                if (forceFullUpdate) {
+                    console.log(`[Migration Override] Version migration active! Forcing full rebuild for ${char.Name}.`);
+                } else if (localLastUpdated && remoteLastUpdated === localLastUpdated) {
                     console.log(`[Status] ${char.Name} up-to-date (${remoteLastUpdated}). Skipping deep extraction.`);
                     char.LastUpdated = remoteLastUpdated;
                     continue;
                 }
 
-                console.log(`[Update] Local: ${localLastUpdated} | Remote: ${remoteLastUpdated}. Extracting deep data...`);
+                console.log(`[Update] Extracting deep payload data for ${char.Name}...`);
 
-                const rawEngines = normalizeExtractedArray(extractJsonArray(detailHtml, "wEngines") || extractJsonArray(detailHtml, "engines") || []);
+                const rawEngines = normalizeExtractedArray(
+                    extractFromPayload(detailStream, detailHtml, "wEngines") || 
+                    extractFromPayload(detailStream, detailHtml, "engines") || []
+                );
                 const bestWEngines = rawEngines.map(e => {
                     if (!e) return null;
                     const name = e.name || (e.wEngine && e.wEngine.name) || (e.engine && e.engine.name) || e.title || e.id || "Unknown Engine";
@@ -242,7 +254,10 @@ async function runScraper() {
                     return { Name: name, Rating: String(rating) };
                 }).filter(Boolean);
 
-                const rawSets = normalizeExtractedArray(extractJsonArray(detailHtml, "driveSets") || extractJsonArray(detailHtml, "diskSets") || []);
+                const rawSets = normalizeExtractedArray(
+                    extractFromPayload(detailStream, detailHtml, "driveSets") || 
+                    extractFromPayload(detailStream, detailHtml, "diskSets") || []
+                );
                 const bestDiskSets = rawSets.map(s => {
                     if (!s) return null;
                     const name = s.name || (s.set && s.set.name) || (s.driveSet && s.driveSet.name) || s.title || "Unknown Set";
@@ -250,7 +265,10 @@ async function runScraper() {
                     return { Name: name, Rating: String(rating) };
                 }).filter(Boolean);
 
-                const rawStats = normalizeExtractedArray(extractJsonArray(detailHtml, "statsPriority") || extractJsonArray(detailHtml, "mainStats") || []);
+                const rawStats = normalizeExtractedArray(
+                    extractFromPayload(detailStream, detailHtml, "statsPriority") || 
+                    extractFromPayload(detailStream, detailHtml, "mainStats") || []
+                );
                 const mainStats = rawStats
                     .filter(s => s && (s.slot === "4" || s.slot === "5" || s.slot === "6" || s.slot === 4 || s.slot === 5 || s.slot === 6))
                     .map(s => {
@@ -263,7 +281,10 @@ async function runScraper() {
                         return { Slot: String(s.slot), Stats: statsArr };
                     });
 
-                const rawCalc = normalizeExtractedArray(extractJsonArray(detailHtml, "calculations") || extractJsonArray(detailHtml, "mindscapes") || []);
+                const rawCalc = normalizeExtractedArray(
+                    extractFromPayload(detailStream, detailHtml, "calculations") || 
+                    extractFromPayload(detailStream, detailHtml, "mindscapes") || []
+                );
                 const calculation = rawCalc.map(c => {
                     if (!c) return null;
                     if (typeof c === 'object') {
@@ -283,7 +304,7 @@ async function runScraper() {
                 fs.writeFileSync(charFilePath, JSON.stringify(finalizedCharacterData, null, 2), 'utf-8');
                 console.log(`[Success] Saved localized cache for ${char.Name}`);
                 char.LastUpdated = remoteLastUpdated;
-                console.log(`For testing purposes ending cycle after one character!`)
+                console.log(`Force cycle break`);
                 break;
             } catch (charError) {
                 console.error(`[Error] Failed processing ${char.Name}:`, charError.message);
