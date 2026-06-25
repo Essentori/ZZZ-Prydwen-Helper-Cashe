@@ -3,7 +3,7 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const fs = require('fs');
 const path = require('path');
 
-const SCRAPER_VERSION = "1.0.0"; 
+const SCRAPER_VERSION = "1.1"; 
 
 puppeteer.use(StealthPlugin());
 
