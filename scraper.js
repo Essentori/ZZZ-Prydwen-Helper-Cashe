@@ -3,7 +3,7 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const fs = require('fs');
 const path = require('path');
 
-// Script version for database migration control
+// Script version for database migration control (Hotfix v1.5.1)
 const SCRAPER_VERSION = "1.5"; 
 
 puppeteer.use(StealthPlugin());
@@ -270,7 +270,7 @@ async function runScraper() {
                     continue;
                 }
 
-                console.log(`[Update] Extracting  data for ${char.Name} from https://www.prydwen.gg/zenless/characters/${char.Link}...`);
+                console.log(`[Update] Extracting  data for ${char.Name} from https://www.prydwen.gg/zenless/characters/${char.Link} ...`);
 
                 // 1. W-Engines (engineBuilds)
                 const rawEngines = extractFromPayload(detailStream, detailHtml, "engineBuilds") || [];
