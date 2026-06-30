@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Script version for database migration control
-const SCRAPER_VERSION = "1.3"; 
+const SCRAPER_VERSION = "1.4"; 
 
 puppeteer.use(StealthPlugin());
 
@@ -167,7 +167,7 @@ async function runScraper() {
             }
 
             if (oldVersion !== SCRAPER_VERSION) {
-                console.log(`[Force Reset] Version mismatch! Old DB Format: v${oldVersion} | New Scraper: v${SCRAPER_VERSION}. Forcing full rebuild.`);
+                console.log(`[Force Reset] Version mismatch! Old DB Format: v${oldVersion} | New Scraper: v${SCRAPER_VERSION}. Forcing migration.`);
                 forceFullUpdate = true;
             }
         } catch (e) {
@@ -210,19 +210,19 @@ async function runScraper() {
             throw new Error("Could not find characters array identifier.");
         }
         
-        console.log(`Parsed ${rosterCharacters.length} characters from roster.`);
+        console.log(`Parsed ${rosterCharacters.length} characters.`);
 
         const processedCharacters = rosterCharacters.map(char => {
             const oldChar = oldRosterMap.get(char.id || "");
             return {
                 Id: char.id || "",
                 Name: char.name || "",
-                Link: char.slug ? `/zenless/characters/${char.slug}` : "",
+                Link: char.slug || "",
                 Rarity: char.rarity ? `${char.rarity}-Rank` : "",
                 Element: char.element || "",
                 Style: char.style || "",
                 Faction: char.faction || "",
-                SmallImage: char.smallImage ? `https://www.prydwen.gg${char.smallImage}` : "",
+                SmallImage: char.smallImage || "",
                 LastUpdated: oldChar ? (oldChar.LastUpdated || "") : ""
             };
         });
@@ -253,6 +253,7 @@ async function runScraper() {
                 await page.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
                 await new Promise(resolve => setTimeout(resolve, 5000));
 
+                // 0. Metadata
                 const detailHtml = await page.content();
                 const detailStream = await page.evaluate(() => {
                     if (!window.__next_f || !Array.isArray(window.__next_f)) return '';
@@ -269,7 +270,7 @@ async function runScraper() {
                     continue;
                 }
 
-                console.log(`[Update] Extracting deep payload data for ${char.Name}...`);
+                console.log(`[Update] Extracting  data for ${char.Name} from https://www.prydwen.gg/zenless/characters/${char.Link}...`);
 
                 // 1. W-Engines (engineBuilds)
                 const rawEngines = extractFromPayload(detailStream, detailHtml, "engineBuilds") || [];
